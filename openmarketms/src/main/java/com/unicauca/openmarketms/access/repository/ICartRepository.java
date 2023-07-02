@@ -1,5 +1,9 @@
 package com.unicauca.openmarketms.access.repository;
 
-public interface ICartRepository {
+import org.springframework.data.repository.CrudRepository;
+
+import com.unicauca.openmarketms.domain.entity.Cart.Cart;
+
+public interface ICartRepository extends CrudRepository<Cart, Long>{
     
 }
