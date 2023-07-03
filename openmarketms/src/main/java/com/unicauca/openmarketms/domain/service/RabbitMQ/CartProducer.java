@@ -12,16 +12,26 @@ import com.rabbitmq.client.ConnectionFactory;
 import com.unicauca.openmarketms.domain.entity.Cart.Cart;
 import com.unicauca.openmarketms.utils.Constants;
 
+import io.swagger.annotations.ApiModel;
+
+@ApiModel(description = "Productor de mensajes para RabbitMQ")
 @Component
 public class CartProducer {
     private final static String EXCHANGE_NAME = "EXCHANGE_CARTS";
     ConnectionFactory factory;
+
     @Autowired
     public CartProducer() {
         factory = new ConnectionFactory();
         factory.setHost(Constants.HOST_NAME);
     }
 
+    /**
+     * Envía un mensaje a la exchange "EXCHANGE_CARTS"(RabbitMQ).
+     *
+     * @param cart El carrito del cual se enviara la informacion como mensaje.
+     * @throws Exception si ocurre un error durante el envío del mensaje.
+     */
     public void sendMessage(Cart cart)throws Exception{
         try (
 				Connection connection = factory.newConnection();
