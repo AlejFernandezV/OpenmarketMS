@@ -15,8 +15,12 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
+import com.unicauca.openmarketms.domain.entity.Delivery.DeliveryOrder;
+import com.unicauca.openmarketms.domain.entity.Delivery.DeliveryStatus;
 import com.unicauca.openmarketms.domain.entity.Person.Person;
 import com.unicauca.openmarketms.domain.service.Delivery.DeliveryServiceImpl;
+import com.unicauca.openmarketms.domain.service.Product.ProductServiceImpl;
+import com.unicauca.openmarketms.domain.service.User.PersonServiceImpl;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -55,6 +59,8 @@ public class Cart implements Serializable {
 
     //Servicios
     private DeliveryServiceImpl deliveryService; 
+    private PersonServiceImpl personService;
+    private ProductServiceImpl productService;
 
     // Operaciones
     /**
@@ -96,7 +102,20 @@ public class Cart implements Serializable {
      */
     public void checkOut() {
         for(CartItem item: this.items){
+            //Crea y setea la informacion a la deliveryOrder
+            DeliveryOrder objDeliveryOrder = new DeliveryOrder();
+            objDeliveryOrder.setQuantity(item.getQuantity());
+            objDeliveryOrder.setProduct(item.getProduct());
+            //objDeliveryOrder.setCompradorAddress(this.personService.find(this.buyerId).getAddress());
+            objDeliveryOrder.setStatus(DeliveryStatus.STATUS_PENDING);
+            
+            //Se agrega al repositorio de deliveryOrders
+            this.deliveryService.create(objDeliveryOrder);
 
+            //Se actualiza la cantidad de productos en su repo
+            //TO DO --> PENDIENTE
         }
+        //Se limpia el carrito de compras
+        this.items.clear();
     }
 }

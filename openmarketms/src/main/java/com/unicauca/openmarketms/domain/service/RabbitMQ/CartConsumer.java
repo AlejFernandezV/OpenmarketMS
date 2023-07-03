@@ -12,7 +12,7 @@ import io.swagger.annotations.ApiModel;
 
 @ApiModel(description = "Consumidor de mensajes de RabbitMQ")
 public class CartConsumer { 
-    private DeliveryOrder objDelivery = new DeliveryOrder(null,0,null);
+    private DeliveryOrder objDelivery = new DeliveryOrder();
 
     /**
      * Consume mensajes de la exchange "EXCHANGE_CARTS"(RabbitMQ).

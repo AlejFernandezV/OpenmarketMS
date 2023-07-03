@@ -29,12 +29,17 @@ public class DeliveryOrder implements Serializable {
     
     @Autowired
     private IDeliveryService service;
+    
     public DeliveryOrder (int quantity, DeliveryStatus status, Product product, Address compradorAddress, Person deliver){
         this.quantity= quantity;
         this.status = status;
         this.product = product;
         this.compradorAddress = compradorAddress; 
         this.deliver = deliver;
+    }
+
+    public DeliveryOrder(){
+
     }
 
     @ApiModelProperty(notes = "Delivery person")
