@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -14,6 +16,7 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 import com.unicauca.openmarketms.domain.entity.Person.Person;
+import com.unicauca.openmarketms.domain.service.Delivery.DeliveryServiceImpl;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -26,13 +29,15 @@ import lombok.Data;
 public class Cart implements Serializable {
 
     // Constructor
-    public Cart(long id) {
-        this.id = id;
+    public Cart(long cartId, long buyerId) {
+        this.id = cartId;
+        this.buyerId = buyerId;
         this.items = new ArrayList<>();
     }
 
     // Atributos
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "cartId")
     @NotNull(message = "El ID del carrito es obligatorio")
     @ApiModelProperty(notes = "ID único del carrito", example = "1")
@@ -42,11 +47,14 @@ public class Cart implements Serializable {
     @ManyToOne
     @JoinColumn(name = "buyer_id")
     @ApiModelProperty(notes = "Comprador asociado al carrito")
-    private Person buyer;
+    private long buyerId;
 
     @OneToMany(mappedBy = "cart", cascade = CascadeType.ALL, orphanRemoval = true)
     @ApiModelProperty(notes = "Elementos del carrito")
     private ArrayList<CartItem> items;
+
+    //Servicios
+    private DeliveryServiceImpl deliveryService; 
 
     // Operaciones
     /**
@@ -83,9 +91,12 @@ public class Cart implements Serializable {
     }
 
     /**
-     * Realiza el proceso de pago y finaliza la compra.
+     * Genera un deliveryOrder por cada ítem del carrito.  Luego del check out, 
+     * el carrito queda vacío y se da de baja el stock en Producto
      */
     public void checkOut() {
-        // Implementa el proceso de pago y finalización de la compra
+        for(CartItem item: this.items){
+
+        }
     }
 }

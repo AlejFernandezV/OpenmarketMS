@@ -15,6 +15,10 @@ import org.springframework.web.bind.annotation.RestController;
 import com.unicauca.openmarketms.domain.entity.Cart.Cart;
 import com.unicauca.openmarketms.domain.service.Cart.ICartService;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+
+@Api(tags = "Cart")
 @RestController
 @RequestMapping("Cart")
 public class CartController {
@@ -27,6 +31,7 @@ public class CartController {
      * 
      * @return Lista de carritos de compras
      */
+    @ApiOperation("Obtiene todos los carritos de compra.")
     @RequestMapping(method = RequestMethod.GET, produces = "application/json")
     public List<Cart> findAll(){
         return(List<Cart>) cartService.findAll();
@@ -38,6 +43,7 @@ public class CartController {
      * @param id id del carrito
      * @return carrito
      */
+    @ApiOperation("Obtiene un carrito de compra por su id.")
     @RequestMapping(value = "{id}", method = RequestMethod.GET, produces = "application/json")
     @ResponseBody
     public Cart findById(@PathVariable Long id) {
@@ -50,6 +56,7 @@ public class CartController {
      * @param cart carrito a crear
      * @return carrito creado
      */
+    @ApiOperation("Crea un carrito de compra.")
     @RequestMapping(method = RequestMethod.POST, produces = "application/json")
     @ResponseBody
     public Cart create(@RequestBody Cart cart) {
@@ -63,7 +70,7 @@ public class CartController {
      * @param id      id del carrito a actualizar
      * @return carrito actualizado
      */
-
+    @ApiOperation("Actualiza un carrito de compra.")
     @RequestMapping(value = "{id}", method = RequestMethod.PUT, produces = "application/json")
     @ResponseBody
     public Cart update(@RequestBody Cart cart, @PathVariable Long id) {
@@ -75,6 +82,7 @@ public class CartController {
      * 
      * @param id id del carrito a eliminar
      */
+    @ApiOperation("Elimina un carrito de compra.")
     @RequestMapping(value = "{id}", method = RequestMethod.DELETE, produces = "application/json")
     @ResponseBody
     @ResponseStatus(HttpStatus.NO_CONTENT)
