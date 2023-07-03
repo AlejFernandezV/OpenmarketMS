@@ -37,6 +37,10 @@ public class DeliveryOrder implements Serializable {
         this.deliver = deliver;
     }
 
+    public DeliveryOrder(){
+        
+    }
+
     @ApiModelProperty(notes = "Delivery person")
     private Person deliver; 
 
