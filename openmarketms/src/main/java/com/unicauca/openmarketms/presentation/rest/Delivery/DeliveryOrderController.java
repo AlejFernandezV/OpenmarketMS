@@ -36,7 +36,7 @@ public class DeliveryOrderController {
 
     @RequestMapping(value = "pending", method = RequestMethod.GET, produces = "application/json")
     public List<DeliveryOrder> getAllPendingOrders() {
-        return service.findByStatus(DeliveryStatus.STATUS_PENDING);
+        return service.getAllPendingOrders();
     }
 
     @RequestMapping(method = RequestMethod.POST, produces = "application/json")

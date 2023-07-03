@@ -38,7 +38,7 @@ public class DeliveryOrder implements Serializable {
     }
 
     public DeliveryOrder(){
-        
+
     }
 
     @ApiModelProperty(notes = "Delivery person")
@@ -64,6 +64,8 @@ public class DeliveryOrder implements Serializable {
     @Column(name = "Status")
     @NotNull(message = "El Estado es obligatorio.")
     private DeliveryStatus status;
+
+    
 
     public void procesarMensaje(String message) {
         String[] partes = message.split(",");
