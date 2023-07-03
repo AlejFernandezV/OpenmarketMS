@@ -46,7 +46,14 @@ public class DeliveryServiceImpl implements IDeliveryService{
     }
 
     @Override
-    public List<DeliveryOrder> findByStatus(DeliveryStatus deliveryStatus) {
-        return (List<DeliveryOrder>) repository.findByStatus(deliveryStatus);
+    public List<DeliveryOrder> getAllPendingOrders() {
+        List<DeliveryOrder> pendingOrders = this.findAll();
+
+        for(DeliveryOrder order : pendingOrders){
+            if(!order.getStatus().equals(DeliveryStatus.STATUS_PENDING)){
+                pendingOrders.remove(order);
+            }
+        }
+        return pendingOrders;
     }    
 }
