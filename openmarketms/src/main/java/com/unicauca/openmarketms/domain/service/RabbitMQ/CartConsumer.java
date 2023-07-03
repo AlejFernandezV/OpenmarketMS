@@ -4,12 +4,21 @@ import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.Connection;
 import com.rabbitmq.client.ConnectionFactory;
 import com.rabbitmq.client.DeliverCallback;
+
 import com.unicauca.openmarketms.domain.entity.Delivery.DeliveryOrder;
 import com.unicauca.openmarketms.utils.Constants;
 
-public class CartConsumer { 
-    private DeliveryOrder objDelivery = new DeliveryOrder(null,0,null);
+import io.swagger.annotations.ApiModel;
 
+@ApiModel(description = "Consumidor de mensajes de RabbitMQ")
+public class CartConsumer { 
+    private DeliveryOrder objDelivery = new DeliveryOrder();
+
+    /**
+     * Consume mensajes de la exchange "EXCHANGE_CARTS"(RabbitMQ).
+     *
+     * @throws Exception si ocurre un error durante el consumo de mensajes.
+     */
 	public void consumeMessage() throws Exception{
 		ConnectionFactory factory = new ConnectionFactory();
         factory.setHost(Constants.HOST_NAME);

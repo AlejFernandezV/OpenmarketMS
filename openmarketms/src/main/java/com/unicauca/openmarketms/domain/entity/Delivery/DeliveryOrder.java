@@ -29,6 +29,7 @@ public class DeliveryOrder implements Serializable {
     
     @Autowired
     private IDeliveryService service;
+    
     public DeliveryOrder (int quantity, DeliveryStatus status, Product product, Address compradorAddress, Person deliver){
         this.quantity= quantity;
         this.status = status;
@@ -38,7 +39,6 @@ public class DeliveryOrder implements Serializable {
     }
 
     public DeliveryOrder(){
-        
     }
 
     @ApiModelProperty(notes = "Delivery person")
