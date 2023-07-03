@@ -29,8 +29,7 @@ public class DeliveryOrder implements Serializable {
     
     @Autowired
     private IDeliveryService service;
-    public DeliveryOrder (Long id, int quantity, DeliveryStatus status, Product product, Address compradorAddress, Person deliver){
-        this.id = id;
+    public DeliveryOrder (int quantity, DeliveryStatus status, Product product, Address compradorAddress, Person deliver){
         this.quantity= quantity;
         this.status = status;
         this.product = product;
