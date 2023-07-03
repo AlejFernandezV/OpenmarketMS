@@ -17,8 +17,11 @@ import com.unicauca.openmarketms.domain.entity.Person.Person;
 import com.unicauca.openmarketms.domain.entity.Product.Product;
 import com.unicauca.openmarketms.domain.service.Delivery.IDeliveryService;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
+@ApiModel(description = "Order details")
 @Entity
 @Table(name = "deliveryOrder")
 @Data
@@ -35,18 +38,26 @@ public class DeliveryOrder implements Serializable {
         this.deliver = deliver;
     }
 
+    @ApiModelProperty(notes = "Delivery person")
     private Person deliver; 
+
+    @ApiModelProperty(notes = "Buyer's address")
     private Address compradorAddress; 
+
+    @ApiModelProperty(notes = "Product details")
     private Product product; 
 
+    @ApiModelProperty(notes = "Order ID")
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @ApiModelProperty(notes = "Order quantity")
     @Column(name = "Quantity")
     @NotNull(message = "La cantidad es obligatoria.")
     private int quantity;
 
+    @ApiModelProperty(notes = "Order status")
     @Column(name = "Status")
     @NotNull(message = "El Estado es obligatorio.")
     private DeliveryStatus status;
