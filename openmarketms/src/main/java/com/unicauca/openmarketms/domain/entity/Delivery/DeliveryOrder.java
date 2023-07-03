@@ -12,6 +12,9 @@ import javax.validation.constraints.NotNull;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.unicauca.openmarketms.domain.entity.Person.Address;
+import com.unicauca.openmarketms.domain.entity.Person.Person;
+import com.unicauca.openmarketms.domain.entity.Product.Product;
 import com.unicauca.openmarketms.domain.service.Delivery.IDeliveryService;
 
 import lombok.Data;
@@ -23,11 +26,18 @@ public class DeliveryOrder implements Serializable {
     
     @Autowired
     private IDeliveryService service;
-    public DeliveryOrder (Long id, int quantity, DeliveryStatus status){
+    public DeliveryOrder (Long id, int quantity, DeliveryStatus status, Product product, Address compradorAddress, Person deliver){
         this.id = id;
         this.quantity= quantity;
         this.status = status;
+        this.product = product;
+        this.compradorAddress = compradorAddress; 
+        this.deliver = deliver;
     }
+
+    private Person deliver; 
+    private Address compradorAddress; 
+    private Product product; 
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -47,7 +57,7 @@ public class DeliveryOrder implements Serializable {
         Long id = Long.parseLong(partes[0]);
         int quantity = Integer.parseInt(partes[1]);
         DeliveryStatus status = DeliveryStatus.valueOf(partes[2]);
-        DeliveryOrder deliveryOrder = new DeliveryOrder(id, quantity, status);
+        /*DeliveryOrder deliveryOrder = new DeliveryOrder(id, quantity, status);
 
         switch(action){
             case "POST": this.service.create(deliveryOrder); break;
@@ -55,6 +65,6 @@ public class DeliveryOrder implements Serializable {
             case "DELETE": this.service.delete(id); break;
             case "GET": this.service.findByStatus(DeliveryStatus.STATUS_PENDING); break;
             default: System.out.println("Error! Action not found"); break;
-        }
+        }*/
     }
 }

@@ -10,7 +10,7 @@ import com.unicauca.openmarketms.domain.entity.Delivery.DeliveryOrder;
 import com.unicauca.openmarketms.utils.Constants;
 
 public class CartConsumer { 
-    private DeliveryOrder objDelivery = new DeliveryOrder();
+    private DeliveryOrder objDelivery = new DeliveryOrder(null, 0, null);
 
 	public void consumeMessage() throws Exception{
 		ConnectionFactory factory = new ConnectionFactory();
@@ -30,7 +30,7 @@ public class CartConsumer {
             System.out.println(" [x] Received '" + message + "'");
             System.out.println(" Processing message...");
             //TO DO
-            //objDelivery.procesarMensaje(message);
+            objDelivery.procesarMensaje(message);
         };
         channel.basicConsume(queueName, true, deliverCallback, consumerTag -> {});
 	}
