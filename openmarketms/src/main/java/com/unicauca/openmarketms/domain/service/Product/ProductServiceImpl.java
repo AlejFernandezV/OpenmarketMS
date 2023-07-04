@@ -36,14 +36,14 @@ public class ProductServiceImpl implements IProductService{
     @Override
     public List<Product> buscarProductos(String palabraClave) {
         List<Product> productos = new ArrayList<>();
-        List<Product> productosEncontrados = new ArrayList<>();
+        List<Product> found = new ArrayList<>();
 
         for (Product producto : productos) {
             if (palabraClave != null && (producto.getName().contains(palabraClave) || producto.getDescription().contains(palabraClave))) {
-                productosEncontrados.add(producto);
+                found.add(producto);
             }
         }
 
-        return productosEncontrados;
+        return found;
     }
 }
