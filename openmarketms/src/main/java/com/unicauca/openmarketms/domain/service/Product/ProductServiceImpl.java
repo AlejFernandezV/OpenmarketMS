@@ -26,7 +26,6 @@ public class ProductServiceImpl implements IProductService{
         return (List<Product>) repository.findAll();
     }
 
-
     /**
      * Busca todos los productos por coincidencia en nombre o descripcion
      * 
@@ -46,4 +45,5 @@ public class ProductServiceImpl implements IProductService{
 
         return found;
     }
+    
 }
