@@ -17,12 +17,12 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
 @Entity
-@Table(name = "Prodict")
+@Table(name = "Product")
 @Data
 @ApiModel(description = "Productos")
 public class Product implements Serializable{
     
-    public Product(long productId, String nameProduct, int quantity){
+    public Product(long productId, String nameProduct, String description, int quantity){
         this.id = productId;
         this.name = nameProduct;
         this.quantity = quantity;
@@ -38,6 +38,10 @@ public class Product implements Serializable{
     @Column(name = "productName")
     @NotNull(message = "El nombre para el producto es obligatorio")
     private String name;
+
+    @Column(name = "productDescription")
+    @NotNull(message = "La descripción para el producto es obligatorio")
+    private String description;
 
     @Column(name = "productQuantity")
     @NotNull(message = "La cantidad del producto es obligatoria")

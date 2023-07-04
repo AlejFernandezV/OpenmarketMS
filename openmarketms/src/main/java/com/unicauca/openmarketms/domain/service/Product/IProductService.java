@@ -1,5 +1,8 @@
 package com.unicauca.openmarketms.domain.service.Product;
 
-public interface IProductService {
+import com.unicauca.openmarketms.domain.entity.Product.Product;
+import com.unicauca.openmarketms.domain.service.IService;
+
+public interface IProductService extends IService <Product>{
     
 }
