@@ -4,10 +4,13 @@ import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.Connection;
 import com.rabbitmq.client.ConnectionFactory;
 import com.rabbitmq.client.DeliverCallback;
+import com.unicauca.openmarketms.domain.entity.Delivery.DeliveryOrder;
 import com.unicauca.openmarketms.utils.Constants;
 
 public class DeliveryOrderConsumer {
     
+    private DeliveryOrder deliveryOrder = new DeliveryOrder();
+
     public void consumeMessage() throws Exception{
 		ConnectionFactory factory = new ConnectionFactory();
         factory.setHost(Constants.HOST_NAME);
@@ -25,8 +28,7 @@ public class DeliveryOrderConsumer {
             String message = new String(delivery.getBody(), "UTF-8");
             System.out.println(" [x] Received '" + message + "'");
             System.out.println(" Processing message...");
-            //TO DO
-            //objDelivery.procesarMensaje(message);
+            deliveryOrder.procesarMensaje(message);
         };
         channel.basicConsume(queueName, true, deliverCallback, consumerTag -> {});
 	}
