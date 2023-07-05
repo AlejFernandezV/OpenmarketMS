@@ -66,8 +66,6 @@ public class DeliveryOrder implements Serializable {
     @NotNull(message = "El Estado es obligatorio.")
     private DeliveryStatus status;
 
-    
-
     public void procesarMensaje(String message) {
         String[] partes = message.split(",");
         String action = partes[0];

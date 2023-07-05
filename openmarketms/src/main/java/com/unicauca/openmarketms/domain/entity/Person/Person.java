@@ -3,6 +3,8 @@ import lombok.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+
+import java.io.Serializable;
 import java.util.Date;
 import java.util.Set;
 
@@ -12,7 +14,7 @@ import java.util.Set;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Person {
+public class Person implements Serializable{
     @Id
     //@GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "person_id")
