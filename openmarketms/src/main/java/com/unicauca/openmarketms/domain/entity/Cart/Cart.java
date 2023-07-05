@@ -17,9 +17,9 @@ import javax.validation.constraints.NotNull;
 
 import com.unicauca.openmarketms.domain.entity.Delivery.DeliveryOrder;
 import com.unicauca.openmarketms.domain.entity.Delivery.DeliveryStatus;
-import com.unicauca.openmarketms.domain.entity.Person.Person;
 import com.unicauca.openmarketms.domain.service.Delivery.DeliveryServiceImpl;
 import com.unicauca.openmarketms.domain.service.Product.ProductServiceImpl;
+import com.unicauca.openmarketms.domain.service.RabbitMQ.DeliveryOrderProducer;
 import com.unicauca.openmarketms.domain.service.User.PersonServiceImpl;
 
 import io.swagger.annotations.ApiModel;
@@ -101,19 +101,30 @@ public class Cart implements Serializable {
      * el carrito queda vacío y se da de baja el stock en Producto
      */
     public void checkOut() {
+        DeliveryOrderProducer deliOrderProd = new DeliveryOrderProducer();
         for(CartItem item: this.items){
             //Crea y setea la informacion a la deliveryOrder
             DeliveryOrder objDeliveryOrder = new DeliveryOrder();
             objDeliveryOrder.setQuantity(item.getQuantity());
             objDeliveryOrder.setProduct(item.getProduct());
-            //objDeliveryOrder.setCompradorAddress(this.personService.find(this.buyerId).getAddress());
+
+            objDeliveryOrder.setCompradorAddress(this.personService.find(this.buyerId).getAddresses().get(0));
+
             objDeliveryOrder.setStatus(DeliveryStatus.STATUS_PENDING);
             
             //Se agrega al repositorio de deliveryOrders
             this.deliveryService.create(objDeliveryOrder);
 
+            //Se encola la orden a su respectiva exchange
+            try {
+                deliOrderProd.sendMessage(objDeliveryOrder);
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
+
             //Se actualiza la cantidad de productos en su repo
-            //TO DO --> PENDIENTE
+            item.getProduct().setQuantity(item.getProduct().getQuantity() - item.getQuantity());
+            this.productService.update(item.getProduct().getId(), item.getProduct());
         }
         //Se limpia el carrito de compras
         this.items.clear();

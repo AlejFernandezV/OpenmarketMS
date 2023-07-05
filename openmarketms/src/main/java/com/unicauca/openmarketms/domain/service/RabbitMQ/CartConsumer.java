@@ -26,9 +26,9 @@ public class CartConsumer {
         Connection connection = factory.newConnection();
         Channel channel = connection.createChannel();
 
-        channel.exchangeDeclare(Constants.EXCHANGE_NAME, Constants.EXCHANGE_TYPE);
+        channel.exchangeDeclare(Constants.EXCHANGE_NAME1, Constants.EXCHANGE_TYPE);
         String queueName = channel.queueDeclare().getQueue();
-        channel.queueBind(queueName, Constants.EXCHANGE_NAME, "");
+        channel.queueBind(queueName, Constants.EXCHANGE_NAME1, "");
 
         System.out.println(" [*] Waiting for messages. To exit press CTRL+C");
 

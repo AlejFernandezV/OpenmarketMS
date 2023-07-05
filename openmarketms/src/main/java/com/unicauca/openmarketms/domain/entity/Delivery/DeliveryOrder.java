@@ -67,19 +67,6 @@ public class DeliveryOrder implements Serializable {
     private DeliveryStatus status;
 
     public void procesarMensaje(String message) {
-        String[] partes = message.split(",");
-        String action = partes[0];
-        Long id = Long.parseLong(partes[0]);
-        int quantity = Integer.parseInt(partes[1]);
-        DeliveryStatus status = DeliveryStatus.valueOf(partes[2]);
-        /*DeliveryOrder deliveryOrder = new DeliveryOrder(id, quantity, status);
-
-        switch(action){
-            case "POST": this.service.create(deliveryOrder); break;
-            case "PUT": this.service.update(id, deliveryOrder); break;
-            case "DELETE": this.service.delete(id); break;
-            case "GET": this.service.findByStatus(DeliveryStatus.STATUS_PENDING); break;
-            default: System.out.println("Error! Action not found"); break;
-        }*/
+        
     }
 }
