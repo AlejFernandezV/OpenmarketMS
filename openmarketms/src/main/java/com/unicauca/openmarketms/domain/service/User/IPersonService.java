@@ -1,9 +1,10 @@
 package com.unicauca.openmarketms.domain.service.User;
 
 import com.unicauca.openmarketms.domain.entity.Person.Person;
-import java.util.List;
+import com.unicauca.openmarketms.domain.service.IService;
 
-public interface IPersonService {
+
+public interface IPersonService extends IService <Person>{
     /**
      * Logueo del usuario
      * @param email email del usuario
@@ -11,11 +12,4 @@ public interface IPersonService {
      * @return Objeto persona si el logueo es exitoso, null de lo contrario
      */
     public Person login(String email, String password);
-
-    /**
-     * Creación de un nuevo usuario
-     * @param person Objeto persona a crear
-     * @return Objeto persona creado
-     */
-    public Person create(Person person);
 }

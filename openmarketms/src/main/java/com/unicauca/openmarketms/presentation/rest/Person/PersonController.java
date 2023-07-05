@@ -1,5 +1,12 @@
 package com.unicauca.openmarketms.presentation.rest.Person;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+
+import com.unicauca.openmarketms.domain.entity.Person.Person;
+import com.unicauca.openmarketms.domain.service.User.IPersonService;
+
 public class PersonController {
     @Autowired
     private IPersonService personService;

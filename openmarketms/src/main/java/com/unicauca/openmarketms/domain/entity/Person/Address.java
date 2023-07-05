@@ -12,8 +12,8 @@ import javax.validation.constraints.NotNull;
 @Table(name = "Address")
 @Getter
 @Setter
-@AllArgtConstructor
-@NoArgsConnstructor
+@AllArgsConstructor
+@NoArgsConstructor
 public class Address {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
