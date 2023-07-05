@@ -9,7 +9,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 @Entity
-@Table(name = "address")
+@Table(name = "Address")
 @Getter
 @Setter
 @AllArgtConstructor
@@ -17,18 +17,17 @@ import javax.validation.constraints.NotNull;
 public class Address {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "address_id")
+    @Column(name = "Id")
     private Long id;
-    @Column(name = "address_latitude", nullable = false, length = 80)
+    @Column(name = "Latitude", nullable = false, length = 80)
     @NotNull(message = "La latitud es obligatoria")
     private Long latitude;
     @NotNull(message = "La longitud es obligatoria")
-    @Column(name = "address_longitude", nullable = false, length = 80)
+    @Column(name = "Longitude", nullable = false, length = 80)
     private Long longitude;
 
     /*Relacion con persona * a 1 */
     @ManyToOne
     @JoinColumn(name = "person_id")
     private Person person;
-
 }

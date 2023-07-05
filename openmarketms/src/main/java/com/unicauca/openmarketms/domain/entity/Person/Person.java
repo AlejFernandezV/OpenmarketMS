@@ -40,5 +40,4 @@ public class Person {
     /*Relacion con addres 1 a * */
     @OneToMany(mappedBy = "person")
     private Set<Address> addresses;
-
 }

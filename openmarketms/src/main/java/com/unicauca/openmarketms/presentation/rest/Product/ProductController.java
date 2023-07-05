@@ -12,6 +12,7 @@ import com.unicauca.openmarketms.domain.entity.Product.Product;
 import com.unicauca.openmarketms.domain.service.Product.IProductService;
 
 import io.swagger.annotations.ApiOperation;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 
 @RestController

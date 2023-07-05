@@ -1,5 +1,8 @@
 package com.unicauca.openmarketms.domain.service.User;
 
+import com.unicauca.openmarketms.domain.entity.Person.Person;
+import java.util.List;
+
 public interface IPersonService {
     /**
      * Logueo del usuario
