@@ -13,7 +13,6 @@ import com.unicauca.openmarketms.utils.Constants;
 
 @Component
 public class DeliveryOrderProducer {
-    private final static String EXCHANGE_NAME = "EXCHANGE_CARTS";
     ConnectionFactory factory;
     @Autowired
     public DeliveryOrderProducer() {
@@ -27,16 +26,24 @@ public class DeliveryOrderProducer {
 				Channel channel = connection.createChannel();
 			) 
 		{
-            channel.exchangeDeclare(EXCHANGE_NAME, Constants.EXCHANGE_TYPE);
+            channel.exchangeDeclare(Constants.EXCHANGE_NAME2, Constants.EXCHANGE_TYPE);
 
-			String message = deliveryOrder.getId()+""; 
-			System.out.println("Informacion a enviar, id de la orden: " + deliveryOrder.getId());
+			String message = deliveryOrder.getId()+","+deliveryOrder.getDeliver().getId()
+            +","+deliveryOrder.getProduct().getId()
+            +","+deliveryOrder.getQuantity()
+            +","+deliveryOrder.getStatus();
+             
+			System.out.println("Informacion a enviar" + deliveryOrder.getId()
+            +", Id Deliver: "+deliveryOrder.getDeliver().getId()
+            +", Id Product: "+deliveryOrder.getProduct().getId()
+            +", Cantidad: "+deliveryOrder.getQuantity()
+            +", Status: "+deliveryOrder.getStatus());
 
 			if(message.length() < 0){
 				message = "default message";
 			} 
 
-            channel.basicPublish(EXCHANGE_NAME,"",null,message.getBytes(StandardCharsets.UTF_8));
+            channel.basicPublish(Constants.EXCHANGE_NAME2,"",null,message.getBytes(StandardCharsets.UTF_8));
             
             System.out.println(" [x] Sent '" + message + "'");
         }

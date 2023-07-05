@@ -17,7 +17,6 @@ import io.swagger.annotations.ApiModel;
 @ApiModel(description = "Productor de mensajes para RabbitMQ")
 @Component
 public class CartProducer {
-    private final static String EXCHANGE_NAME = "EXCHANGE_CARTS";
     ConnectionFactory factory;
 
     @Autowired
@@ -38,7 +37,7 @@ public class CartProducer {
 				Channel channel = connection.createChannel();
 			) 
 		{
-            channel.exchangeDeclare(EXCHANGE_NAME, Constants.EXCHANGE_TYPE);
+            channel.exchangeDeclare(Constants.EXCHANGE_NAME1, Constants.EXCHANGE_TYPE);
 
 			String message = cart.getId()+""; 
 			System.out.println("Informacion a enviar: Id Carrito: "+cart.getId());
@@ -47,7 +46,7 @@ public class CartProducer {
 				message = "default message";
 			} 
 
-            channel.basicPublish(EXCHANGE_NAME,"",null,message.getBytes(StandardCharsets.UTF_8));
+            channel.basicPublish(Constants.EXCHANGE_NAME1,"",null,message.getBytes(StandardCharsets.UTF_8));
             
             System.out.println(" [x] Sent '" + message + "'");
         }

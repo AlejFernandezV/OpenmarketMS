@@ -15,9 +15,9 @@ public class DeliveryOrderConsumer {
         Connection connection = factory.newConnection();
         Channel channel = connection.createChannel();
 
-        channel.exchangeDeclare(Constants.EXCHANGE_NAME, Constants.EXCHANGE_TYPE);
+        channel.exchangeDeclare(Constants.EXCHANGE_NAME2, Constants.EXCHANGE_TYPE);
         String queueName = channel.queueDeclare().getQueue();
-        channel.queueBind(queueName, Constants.EXCHANGE_NAME, "");
+        channel.queueBind(queueName, Constants.EXCHANGE_NAME2, "");
 
         System.out.println(" [*] Waiting for messages. To exit press CTRL+C");
 
