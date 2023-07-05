@@ -1,58 +1,33 @@
 package com.unicauca.openmarketms.domain.entity.Person;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 @Entity
-@Table(name = "address")
+@Table(name = "Address")
+@Getter
+@Setter
+@AllArgtConstructor
+@NoArgsConnstructor
 public class Address {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "Id")
     private Long id;
+    @Column(name = "Latitude", nullable = false, length = 80)
+    @NotNull(message = "La latitud es obligatoria")
+    private Long latitude;
+    @NotNull(message = "La longitud es obligatoria")
+    @Column(name = "Longitude", nullable = false, length = 80)
+    private Long longitude;
 
-    @Column(name = "latitude")
-    private Double latitude;
-
-    @Column(name = "longitude")
-    private Double longitude;
-
-    // Constructor
-    public Address(Long id, Double latitude, Double longitude) {
-        this.id = id;
-        this.latitude = latitude;
-        this.longitude = longitude;
-    }
-
-    // Default constructor
-    public Address() {
-    }
-
-    // Getters and Setters
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Double getLatitude() {
-        return latitude;
-    }
-
-    public void setLatitude(Double latitude) {
-        this.latitude = latitude;
-    }
-
-    public Double getLongitude() {
-        return longitude;
-    }
-
-    public void setLongitude(Double longitude) {
-        this.longitude = longitude;
-    }
+    /*Relacion con persona * a 1 */
+    @ManyToOne
+    @JoinColumn(name = "person_id")
+    private Person person;
 }

@@ -4,14 +4,18 @@ import com.unicauca.openmarketms.domain.entity.Person.Person;
 import java.util.List;
 
 public interface IPersonService {
-    
-     List<Person> getAllPersons();
+    /**
+     * Logueo del usuario
+     * @param email email del usuario
+     * @param password contraseña del usuario
+     * @return Objeto persona si el logueo es exitoso, null de lo contrario
+     */
+    public Person login(String email, String password);
 
-    Person getPersonById(Long id);
-
-    void createPerson(Person person);
-
-    void updatePerson(Long id, Person updatedPerson);
-
-    void deletePerson(Long id);
+    /**
+     * Creación de un nuevo usuario
+     * @param person Objeto persona a crear
+     * @return Objeto persona creado
+     */
+    public Person create(Person person);
 }

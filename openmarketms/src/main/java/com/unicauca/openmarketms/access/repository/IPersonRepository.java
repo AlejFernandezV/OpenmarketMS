@@ -17,4 +17,12 @@ public interface IPersonRepository {
 
     public void deleteById(Long id);
 
+    /**
+     * Busca una persona por su email y password
+     * @param email email
+     * @param password password
+     * @return persona
+     */
+    public Person findPersonByEmailAndPassword(String email, String password);
+
 }

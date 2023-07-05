@@ -1,56 +1,43 @@
 package com.unicauca.openmarketms.domain.entity.Person;
+import lombok.*;
 
-import java.time.LocalDate;
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import java.util.Date;
+import java.util.Set;
 
+@Entity
+@Table(name = "person")
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class Person {
-    
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    //@GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "person_id")
     private Long id;
 
-    @Column(name = "name")
+    @Column(name = "person_name", nullable = false, length = 80)
+    @NotNull(message = "El nombre es obligatorio")
     private String name;
 
-    @Column(name = "birth_date")
-    private LocalDate birthDate;
+    @Column(name = "person_birthdate", nullable = true)
+    private Date birthdate;
 
-    // Constructor
-    public Person(Long id, String name, LocalDate birthDate) {
-        this.id = id;
-        this.name = name;
-        this.birthDate = birthDate;
-    }
+    @Column(name = "person_email", nullable = false, length = 60)
+    @NotNull(message = "El email es obligatorio")
+    private String email;
 
-    // Default constructor
-    public Person() {
-    }
+    @Column(name = "person_password", nullable = false, length = 60)
+    @NotNull(message = "La contraseña es obligatoria")
+    private String password;
 
-    // Getters and Setters
-    public Long getId() {
-        return id;
-    }
+    @Column(name = "person_role", nullable = false, length = 60)
+    @NotNull(message = "El rol es obligatorio")
+    private Roles role;
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public LocalDate getBirthDate() {
-        return birthDate;
-    }
-
-    public void setBirthDate(LocalDate birthDate) {
-        this.birthDate = birthDate;
-    }
+    /*Relacion con addres 1 a * */
+    @OneToMany(mappedBy = "person")
+    private Set<Address> addresses;
 }
