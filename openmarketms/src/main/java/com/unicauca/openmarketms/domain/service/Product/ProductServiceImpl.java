@@ -55,7 +55,7 @@ public class ProductServiceImpl implements IProductService{
     @Override
     public Product create(Product object) {
         // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'create'");
+                return repository.save(object);
     }
 
     @Override
