@@ -39,7 +39,6 @@ public class DeliveryOrder implements Serializable {
     }
 
     public DeliveryOrder(){
-
     }
 
     @ApiModelProperty(notes = "Delivery person")

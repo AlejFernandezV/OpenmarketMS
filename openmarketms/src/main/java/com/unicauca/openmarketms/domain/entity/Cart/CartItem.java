@@ -41,7 +41,6 @@ public class CartItem {
     private int quantity;
 
     // Asociaciones
-    @ManyToOne
     @JoinColumn(name = "product_id")
     @ApiModelProperty(notes = "Producto asociado al elemento del carrito")
     private Product product;

@@ -7,6 +7,5 @@ import org.springframework.data.repository.CrudRepository;
 import com.unicauca.openmarketms.domain.entity.Product.Product;
 
 public interface IProductRepository extends CrudRepository<Product, Long>{
-    public List<Product> findAll();
     public List<Product> findForWord(String palabraClave, double price, String category, String ubication);
 }
