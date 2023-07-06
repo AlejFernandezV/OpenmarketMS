@@ -66,7 +66,21 @@ public class DeliveryOrder implements Serializable {
     @NotNull(message = "El Estado es obligatorio.")
     private DeliveryStatus status;
 
+    @ApiModelProperty(notes = "process message")
     public void procesarMensaje(String message) {
+        String [] split = message.split(",");
         
+        // Obtener el ID del pedido del mensaje
+        Long idLong = Long.parseLong(split[0]);
+
+        // Buscar el pedido utilizando el servicio
+        DeliveryOrder deliveryOrder = service.find(idLong);
+
+        // Si se encuentra el pedido, establecer el estado en STATUS_PICKEDUP, si no, mostrar mensaje de error
+        if (!deliveryOrder.equals(null)){
+            deliveryOrder.setStatus(DeliveryStatus.STATUS_PICKEDUP);
+        }else{
+            System.out.println("Error! No se encontro el pedido.");
+        }
     }
 }
