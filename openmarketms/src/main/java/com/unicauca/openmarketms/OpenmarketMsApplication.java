@@ -4,10 +4,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class OpenmarketMsApplication {
+public class OpenmarketmsApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(OpenmarketMsApplication.class, args);
+		SpringApplication.run(OpenmarketmsApplication.class, args);
 	}
 
 }
