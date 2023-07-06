@@ -25,8 +25,8 @@ public class CartItem {
     // Constructor
     public CartItem(Product product) {
         this.product = product;
-        //this.id = product.getId();
-        //this.quantity = product.getQuantity();
+        this.id = product.getId();
+        this.quantity = product.getQuantity();
     }
 
     // Atributos

@@ -15,6 +15,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import com.unicauca.openmarketms.domain.entity.Delivery.DeliveryOrder;
 import com.unicauca.openmarketms.domain.entity.Delivery.DeliveryStatus;
 import com.unicauca.openmarketms.domain.service.Delivery.DeliveryServiceImpl;
@@ -58,8 +60,11 @@ public class Cart implements Serializable {
     private ArrayList<CartItem> items;
 
     //Servicios
-    private DeliveryServiceImpl deliveryService; 
+    @Autowired
+    private DeliveryServiceImpl deliveryService;
+    @Autowired 
     private PersonServiceImpl personService;
+    @Autowired
     private ProductServiceImpl productService;
 
     // Operaciones
