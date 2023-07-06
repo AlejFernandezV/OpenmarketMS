@@ -10,8 +10,6 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
-import org.springframework.boot.context.properties.bind.Name;
-import com.unicauca.openmarketms.domain.entity.Product.PickUpAddress;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
@@ -23,7 +21,7 @@ import lombok.Data;
 public class Product implements Serializable{
     
 
-    public Product(long productId, String nameProduct, String description, double price, String category, String ubication, int quantity){
+    public Product(long productId, String nameProduct, String description, double price, String category, String ubication, int quantity, PickUpAddress address){
         this.id = productId;
         this.name = nameProduct;
         this.description = description;
@@ -72,10 +70,4 @@ public class Product implements Serializable{
     @Column(name = "productAddres")
     @NotNull(message = "La dirección de entrega del producto es obligatoria")
     private PickUpAddress address;
-    //Servicios
-
-
-    //Operaciones
-    
-
 }

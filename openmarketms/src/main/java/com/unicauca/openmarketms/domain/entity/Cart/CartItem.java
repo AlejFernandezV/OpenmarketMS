@@ -25,8 +25,8 @@ public class CartItem {
     // Constructor
     public CartItem(Product product) {
         this.product = product;
-        //this.id = product.getId();
-        //this.quantity = product.getQuantity();
+        this.id = product.getId();
+        this.quantity = product.getQuantity();
     }
 
     // Atributos
@@ -41,7 +41,6 @@ public class CartItem {
     private int quantity;
 
     // Asociaciones
-    @ManyToOne
     @JoinColumn(name = "product_id")
     @ApiModelProperty(notes = "Producto asociado al elemento del carrito")
     private Product product;

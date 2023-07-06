@@ -39,7 +39,5 @@ public class Person implements Serializable{
     @NotNull(message = "El rol es obligatorio")
     private Roles role;
 
-    /*Relacion con addres 1 a * */
-    @OneToMany(mappedBy = "person")
     private List<Address> addresses;
 }

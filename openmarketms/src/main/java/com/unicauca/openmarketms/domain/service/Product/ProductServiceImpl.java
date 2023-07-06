@@ -5,7 +5,6 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import com.unicauca.openmarketms.access.repository.IProductRepository;
 import com.unicauca.openmarketms.domain.entity.Product.Product;
@@ -57,26 +56,28 @@ public class ProductServiceImpl implements IProductService{
 
     @Override
     public Product find(Long id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'find'");
+        return repository.findById(id).orElse(null);
     }
 
     @Override
     public Product create(Product object) {
-        // TODO Auto-generated method stub
-                return repository.save(object);
+        return repository.save(object);
     }
 
     @Override
-    public Product update(Long id, Product object) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'update'");
+    public Product update(Long id, Product p) {
+        Product updateProduct = this.find(id);
+        updateProduct.setId(p.getId());
+        updateProduct.setName(p.getName());
+        updateProduct.setDescription(p.getDescription());
+        updateProduct.setPrice(p.getPrice());
+        updateProduct.setQuantity(p.getQuantity());
+        return repository.save(updateProduct);
     }
 
     @Override
     public void delete(Long id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'delete'");
+        repository.deleteById(id);
     }
     
 }

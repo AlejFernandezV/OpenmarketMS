@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.unicauca.openmarketms.domain.entity.Delivery.DeliveryOrder;
-import com.unicauca.openmarketms.domain.entity.Delivery.DeliveryStatus;
 import com.unicauca.openmarketms.domain.service.Delivery.IDeliveryService;
 
 @RestController

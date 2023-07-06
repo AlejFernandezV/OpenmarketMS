@@ -2,25 +2,25 @@ package com.unicauca.openmarketms.domain.entity.Cart;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import com.unicauca.openmarketms.domain.entity.Delivery.DeliveryOrder;
 import com.unicauca.openmarketms.domain.entity.Delivery.DeliveryStatus;
-import com.unicauca.openmarketms.domain.service.Delivery.DeliveryServiceImpl;
-import com.unicauca.openmarketms.domain.service.Product.ProductServiceImpl;
+import com.unicauca.openmarketms.domain.service.Delivery.IDeliveryService;
+import com.unicauca.openmarketms.domain.service.Product.IProductService;
 import com.unicauca.openmarketms.domain.service.RabbitMQ.DeliveryOrderProducer;
-import com.unicauca.openmarketms.domain.service.User.PersonServiceImpl;
+import com.unicauca.openmarketms.domain.service.User.IPersonService;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -31,36 +31,38 @@ import lombok.Data;
 @Data
 @ApiModel(description = "Representa un carrito de compras")
 public class Cart implements Serializable {
-
-    // Constructor
-    public Cart(long cartId, long buyerId) {
-        this.id = cartId;
-        this.buyerId = buyerId;
-        this.items = new ArrayList<>();
-    }
-
     // Atributos
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "cartId")
     @NotNull(message = "El ID del carrito es obligatorio")
     @ApiModelProperty(notes = "ID único del carrito", example = "1")
-    private long id;
+    private Long id;
 
     // Asociaciones
-    @ManyToOne
-    @JoinColumn(name = "buyer_id")
+    @JoinColumn(name = "buyerId")
     @ApiModelProperty(notes = "Comprador asociado al carrito")
-    private long buyerId;
+    private Long buyerId;
 
-    @OneToMany(mappedBy = "cart", cascade = CascadeType.ALL, orphanRemoval = true)
     @ApiModelProperty(notes = "Elementos del carrito")
-    private ArrayList<CartItem> items;
-
+    private List<CartItem> items;
+    
     //Servicios
-    private DeliveryServiceImpl deliveryService; 
-    private PersonServiceImpl personService;
-    private ProductServiceImpl productService;
+    @Autowired
+    private IDeliveryService deliveryService;
+    @Autowired 
+    private IPersonService personService;
+    @Autowired
+    private IProductService productService;
+
+    // Constructor
+    public Cart(long cartId, Long buyerId) {
+        this.id = cartId;
+        this.buyerId = buyerId;
+        this.items = new ArrayList<>();
+    }
+
+    
 
     // Operaciones
     /**

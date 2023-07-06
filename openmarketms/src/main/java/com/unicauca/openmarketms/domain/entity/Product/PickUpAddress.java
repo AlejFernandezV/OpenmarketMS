@@ -1,8 +1,5 @@
 package com.unicauca.openmarketms.domain.entity.Product;
 
-
-import java.io.Serializable;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -16,7 +13,7 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
 @Entity
-@Table(name = "Prodict")
+@Table(name = "Product")
 @Data
 @ApiModel(description = "Productos")
 public class PickUpAddress {
