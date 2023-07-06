@@ -23,6 +23,7 @@ public class PickUpAddress {
         this.pickUpLongitude = pickUpLongitude;
         this.pickUpLatitude = pickUpLatitude;
     }
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "pickUpId")

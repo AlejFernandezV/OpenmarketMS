@@ -28,7 +28,10 @@ public class ProductServiceImpl implements IProductService{
     /**
      * Busca todos los productos por coincidencia en nombre o descripcion
      * 
-     * @param palabraClave palabra clave por la cual se busca el producto
+     * @param palabraClave  palabra clave por la cual se busca el producto
+     * @param price
+     * @param category
+     * @param ubication
      * @return Lista de productos
      */
     @Override
@@ -54,16 +57,35 @@ public class ProductServiceImpl implements IProductService{
         return found;
     }
 
+    /**
+     * busca los productos
+     * 
+     * @param id
+     * @return lista de productos encontrados
+     */
     @Override
     public Product find(Long id) {
         return repository.findById(id).orElse(null);
     }
 
+    /**
+     * Crea un producto
+     * 
+     * @param object
+     * @return producto creado
+     */
     @Override
     public Product create(Product object) {
         return repository.save(object);
     }
 
+    /**
+     * Actualiza un producto
+     * 
+     * @param id
+     * @param p
+     * @return Producto actualizado
+     */
     @Override
     public Product update(Long id, Product p) {
         Product updateProduct = this.find(id);
@@ -75,6 +97,11 @@ public class ProductServiceImpl implements IProductService{
         return repository.save(updateProduct);
     }
 
+    /**
+     * Elimina un producto
+     * 
+     * @param id
+     */
     @Override
     public void delete(Long id) {
         repository.deleteById(id);

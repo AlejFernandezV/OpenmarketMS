@@ -37,11 +37,24 @@ public class DeliveryServiceImpl implements IDeliveryService{
         return idDeliveryOrder;
     }
 
+    /**
+     * crea una orden 
+     * 
+     * @param object
+     * @return orden creada
+     */
     @Override
     public DeliveryOrder create(DeliveryOrder object) {
         return repository.save(object);
     }
 
+    /**
+     * Actualiza una orden
+     * 
+     * @param id
+     * @param object
+     * @return orden actualizada
+     */
     @Override
     public DeliveryOrder update(Long id, DeliveryOrder object) {
         DeliveryOrder updatDeliveryOrder = this.find(id);
@@ -51,11 +64,21 @@ public class DeliveryServiceImpl implements IDeliveryService{
         return repository.save(updatDeliveryOrder);
     }
 
+    /**
+     * Elimina una orden
+     * 
+     * @param id
+     */
     @Override
     public void delete(Long id) {
         repository.deleteById(id);
     }
 
+    /**
+     * Obtiene órdenes pendientes
+     * 
+     * @return lista de órdenes pendientes
+     */
     @Override
     public List<DeliveryOrder> getAllPendingOrders() {
         List<DeliveryOrder> pendingOrders = this.findAll();

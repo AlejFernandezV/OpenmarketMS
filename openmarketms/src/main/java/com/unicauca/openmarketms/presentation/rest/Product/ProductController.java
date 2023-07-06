@@ -23,7 +23,7 @@ public class ProductController {
     @Autowired
     private IProductService productService;
 
-    /*
+    /**
      * Busca todos los productos
      * 
      * @return Lista de productos
@@ -34,9 +34,13 @@ public class ProductController {
         return(List<Product>) productService.findAll();
     }
 
-    /*
+    /**
      * Busca todos los productos según palabra clave u otros filtros
      * 
+     * @param palabraClave 
+     * @param price
+     * @param category
+     * @param ubication
      * @return Lista de productos
      */
     @ApiOperation("Obtiene los productos según una palabra clave u otros flitros.")
@@ -46,7 +50,7 @@ public class ProductController {
         return productService.findForWord(palabraClave, price,category, ubication);
     }
 
-            /**
+    /**
      * Crea un Producto
      * 
      * @param product carrito a crear
