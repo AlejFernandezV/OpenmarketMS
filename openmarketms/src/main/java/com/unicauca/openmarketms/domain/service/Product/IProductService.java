@@ -7,5 +7,5 @@ import com.unicauca.openmarketms.domain.service.IService;
 
 public interface IProductService extends IService <Product>{
     public List<Product> findAll();
-    public List<Product> buscarProductos(String palabraClave);
+    public List<Product> findForWord(String palabraClave, double price, String category, String ubication);
 }

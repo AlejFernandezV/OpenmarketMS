@@ -15,11 +15,22 @@ public class DeliveryServiceImpl implements IDeliveryService{
     @Autowired
     private IDeliveryOrderRepository repository;
 
+    /**
+     * Busca todos los pedidos
+     * 
+     * @return Lista de pedidos
+     */
     @Override
     public List<DeliveryOrder> findAll() {
         return (List<DeliveryOrder>) repository.findAll();
     }
 
+     /**
+     * Busca un pedido por su id
+     * 
+     * @param id id del pedido
+     * @return pedido
+     */
     @Override
     public DeliveryOrder find(Long id) {
         DeliveryOrder idDeliveryOrder = repository.findById(id).orElse(null);

@@ -8,5 +8,5 @@ import com.unicauca.openmarketms.domain.entity.Product.Product;
 
 public interface IProductRepository extends CrudRepository<Product, Long>{
     public List<Product> findAll();
-    public List<Product> buscarProductos(String palabraClave);
+    public List<Product> findForWord(String palabraClave, double price, String category, String ubication);
 }

@@ -34,10 +34,16 @@ public class ProductController {
         return(List<Product>) productService.findAll();
     }
 
-    @RequestMapping(value = "{palabraClave}", method = RequestMethod.GET, produces = "application/json")
+    /*
+     * Busca todos los productos según palabra clave u otros filtros
+     * 
+     * @return Lista de productos
+     */
+    @ApiOperation("Obtiene los productos según una palabra clave u otros flitros.")
+    @RequestMapping(method = RequestMethod.GET, produces = "application/json")
     @ResponseBody
-    public List<Product> buscarProducts(@PathVariable String palabraClave){
-        return productService.buscarProductos(palabraClave);
+    public List<Product> buscarProducts(@PathVariable String palabraClave, @PathVariable Double price, @PathVariable String category,@PathVariable String ubication){
+        return productService.findForWord(palabraClave, price,category, ubication);
     }
 
             /**
