@@ -33,13 +33,22 @@ public class ProductServiceImpl implements IProductService{
      * @return Lista de productos
      */
     @Override
-    public List<Product> buscarProductos(String palabraClave) {
-        List<Product> productos = new ArrayList<>();
+    public List<Product> findForWord(String palabraClave, double price, String category, String ubication) {
+        List<Product> prdcts = new ArrayList<>();
         List<Product> found = new ArrayList<>();
 
-        for (Product producto : productos) {
-            if (palabraClave != null && (producto.getName().contains(palabraClave) || producto.getDescription().contains(palabraClave))) {
-                found.add(producto);
+        for (Product prdct : prdcts) {
+            if (palabraClave != null && (prdct.getName().contains(palabraClave) || prdct.getDescription().contains(palabraClave))) {
+                found.add(prdct);
+            }
+            if (price == prdct.getPrice()){
+                found.add(prdct);
+            }
+            if (category == prdct.getCategory()){
+                found.add(prdct);
+            }
+            if (ubication == prdct.getUbication()){
+                found.add(prdct);
             }
         }
 

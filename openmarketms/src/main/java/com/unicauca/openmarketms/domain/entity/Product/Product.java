@@ -22,9 +22,13 @@ import lombok.Data;
 @ApiModel(description = "Productos")
 public class Product implements Serializable{
     
-    public Product(long productId, String nameProduct, String description, int quantity){
+    public Product(long productId, String nameProduct, String description, double price, String category, String ubication, int quantity){
         this.id = productId;
         this.name = nameProduct;
+        this.description = description;
+        this.price = price;
+        this.category = category;
+        this.ubication = ubication;
         this.quantity = quantity;
     }
 
@@ -42,6 +46,18 @@ public class Product implements Serializable{
     @Column(name = "productDescription")
     @NotNull(message = "La descripción para el producto es obligatorio")
     private String description;
+
+    @Column(name = "productPrice")
+    @NotNull(message = "El precio para el producto es obligatorio")
+    private double price;
+
+    @Column(name = "productCategory")
+    @NotNull(message = "La categoria para el producto es obligatorio")
+    private String category;
+
+    @Column(name = "productUbication")
+    @NotNull(message = "La ubicación para el producto es obligatorio")
+    private String ubication;
 
     @Column(name = "productQuantity")
     @NotNull(message = "La cantidad del producto es obligatoria")
