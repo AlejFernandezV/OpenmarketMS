@@ -14,6 +14,7 @@ import com.unicauca.openmarketms.utils.Constants;
 @Component
 public class DeliveryOrderProducer {
     ConnectionFactory factory;
+    
     @Autowired
     public DeliveryOrderProducer() {
         factory = new ConnectionFactory();

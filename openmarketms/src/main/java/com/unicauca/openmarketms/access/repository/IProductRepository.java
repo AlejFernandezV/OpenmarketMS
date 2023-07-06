@@ -12,7 +12,7 @@ import io.swagger.annotations.ApiParam;
 
 public interface IProductRepository extends CrudRepository<Product, Long>{
 
-    @ApiOperation("Busca los productos de acuerdo a una palabra o ciertos filtros")
+    @ApiOperation("Busca los productos de acuerdo a una palabra o de acuerdo a ciertos filtros cómo lo son el precio, categoría o ubicación")
     public List<Product> findForWord(@ApiParam(value = "Palabra clave", required = true) @RequestParam("palabraClave") String palabraClave, 
                                     @ApiParam(value = "Precio", required = false) @RequestParam("price") double price, 
                                     @ApiParam(value = "Categoria", required = false) @RequestParam("category") String category, 
