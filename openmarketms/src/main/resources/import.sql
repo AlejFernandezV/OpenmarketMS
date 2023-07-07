@@ -4,11 +4,6 @@ INSERT INTO Person (id, name, birthdate, email, password, role) VALUES (2, 'Juan
 INSERT INTO Person (id, name, birthdate, email, password, role) VALUES (3, 'Pedro', '2023-06-12 22:02:18.000000',  'pedro@gmail.con', '1234', 'ROLE_SELLER');
 INSERT INTO Person (id, name, birthdate, email, password, role) VALUES (4, 'Maria', '2023-06-12 22:02:18.000000',  'maria@gmai.com', '1234', 'ROLE_DELIVERY');
 
--- Script para address
-INSERT INTO address (id, latitude, longitude) VALUES (1, 37.7749, -122.4194);
-INSERT INTO address (id, latitude, longitude) VALUES (2, 40.7128, -74.0060);
-INSERT INTO address (id, latitude, longitude) VALUES (3, 51.5074, -0.1278);
-
 -- Script para Product
 INSERT INTO product (id, name, quantity, price, description, category, ubication) VALUES (1, 'Product A', 10, 19.99, 'This is a description of Product A', 'Electronics', 'Store A');
 INSERT INTO product (id, name, quantity, price, description, category, ubication) VALUES (2, 'T-Shirt', 20, 12.99, 'Comfortable cotton t-shirt', 'Apparel', 'Clothing Store');
